@@ -1,0 +1,17 @@
+services:
+    App\Controller\BookListController: 
+        arguments:
+            - '@App\Repository\BookRepository'
+            - '@Twig\Environment'
+        tags: 
+            {name: controller.service_arguments}
+            
+    App\Repository\BookRepository: ~
+
+    Twig\Environment: 
+        arguments:
+            $loader: '@Twig\Loader\FilesystemLoader'
+
+    Twig\Loader\FilesystemLoader: 
+        arguments:
+            $paths: '%kernel.project_dir%/templates'
